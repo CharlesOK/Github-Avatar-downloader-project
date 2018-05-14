@@ -10,11 +10,16 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
     };
 
-
   request(options, function(err, res, body) {
     cb(err, JSON.parse(body));
   });
 }
+
+  function downloadImageByURL(url, filePath) {
+        request.get(url)
+         .pipe(fs.createWriteStream('./images/' + filePath + '.png'));
+    }
+
 
 getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
